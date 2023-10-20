@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: application-set-cfahrni
+spec:
+  generators:
+  - list:
+      elements:
+        - cluster: dev-cluster
+          url: https://kubernetes.default.svc
+          env: dev
+          traininguser: cfahrni
+        - cluster: prod-cluster
+          url: https://kubernetes.default.svc
+          env: prod
+          traininguser: cfahrni
+  template:
+    metadata:
+      name: '{{cluster}}-as-example-{{traininguser}}'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/cfahrni/argocd-training-examples.git'
+        targetRevision: HEAD
+        path: example-app
+      destination:
+        server: '{{url}}'
+        namespace: '{{traininguser}}-{{env}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true  
