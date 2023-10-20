@@ -29,3 +29,7 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: 'cfahrni-{{cluster}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true  
