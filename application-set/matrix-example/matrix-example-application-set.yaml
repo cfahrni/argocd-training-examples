@@ -13,7 +13,7 @@ spec:
               - cluster: prod
                 url: https://kubernetes.default.svc
           - git:
-              repoURL: 'https://github.com/cfahrni/argocd-training-examples.git'
+              repoURL: https://github.com/cfahrni/argocd-training-examples.git
               revision: HEAD
               directories:
                 - path: application-set/matrix-git-example/*
@@ -23,7 +23,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/cfahrni/argocd-training-examples.git'
+        repoURL: https://github.com/cfahrni/argocd-training-examples.git
         targetRevision: HEAD
         path: '{{path}}'
       destination:
